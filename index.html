@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoLearn.ai - AI Tutor Prototype for Gen Z</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation for Deck/Prototype Sections -->
+    <nav class="nav-bar">
+        <div class="nav-title">YoLearn.ai Prototype Deck</div>
+        <ul class="nav-links">
+            <li><a href="#home" onclick="showSection('home')">1. Homepage</a></li>
+            <li><a href="#onboarding" onclick="showSection('onboarding')">2. User Journey</a></li>
+            <li><a href="#features" onclick="showSection('features')">3. Instant Hooks</a></li>
+            <li><a href="#companions" onclick="showSection('companions')">4. Companions</a></li>
+            <li><a href="#dashboard" onclick="showSection('dashboard')">5. Dashboard</a></li>
+            <li><a href="#network" onclick="showSection('network')">6. Network Effects</a></li>
+            <li><a href="#funnel" onclick="showSection('funnel')">Gen Z Funnel</a></li>
+        </ul>
+    </nav>
+
+    <!-- Section 1: Homepage Redesign (Challenge 5) -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <h1>YoLearn.ai: Your AI Buddy for Smarter, Funner Learning 🚀</h1>
+            <p>Built for Gen Z: Instant AI tutors that vibe with you. No boring lectures—just wow moments.</p>
+            <div class="demo-input">
+                <input type="text" id="quickQuery" placeholder="Ask Yo anything: 'Explain quantum physics in memes'">
+                <button onclick="generateDemo()">Try Now <i class="fas fa-magic"></i></button>
+            </div>
+            <div id="demoOutput" class="output-card hidden">
+                <h3>Yo's Instant Answer:</h3>
+                <p id="outputText">Loading your wow...</p>
+                <button class="share-btn" onclick="simulateShare('demo')">Share this! 📱</button>
+            </div>
+            <!-- Signup Hook: Skip Email, Use WhatsApp/Discord -->
+            <div class="signup-hook">
+                <button class="whatsapp-btn" onclick="simulateLogin('whatsapp')"><i class="fab fa-whatsapp"></i> Sign in with WhatsApp</button>
+                <button class="discord-btn" onclick="simulateLogin('discord')"><i class="fab fa-discord"></i> Sign in with Discord</button>
+            </div>
+        </div>
+        <!-- Microinteraction: Vortex Loading -->
+        <div id="loadingVortex" class="vortex hidden"></div>
+    </section>
+
+    <!-- Section 2: User Journey Optimization (Challenge 2) -->
+    <section id="onboarding" class="section">
+        <h2>Seamless User Journey: From Homepage to First Wow</h2>
+        <div class="journey-flow">
+            <div class="step active" onclick="advanceJourney(1)">
+                <h3>Step 1: Homepage → Signup</h3>
+                <p>Frictionless: No email. Pick goal (e.g., "Ace SATs") → Instant AI intro.</p>
+            </div>
+            <div class="step" onclick="advanceJourney(2)">
+                <h3>Step 2: Avatar/Companion Setup</h3>
+                <p>🎭 Customize: Choose vibe (Chill, Hype). Meet your AI Tutor in 10s.</p>
+                <select id="goalSelect">
+                    <option>Ace Math</option>
+                    <option>Code Like a Boss</option>
+                    <option>Stress Less</option>
+                </select>
+                <button onclick="setupCompanion()">Setup My Buddy</button>
+            </div>
+            <div class="step" onclick="advanceJourney(3)">
+                <h3>Step 3: First Tool Use → Wow in 30s</h3>
+                <p>✨ Generate flashcards or summary instantly. Reduces drop-off by 80%.</p>
+                <div id="firstWow" class="wow-card hidden">
+                    <h4>Your First Flashcard Deck:</h4>
+                    <ul>
+                        <li>Concept 1: Quantum = Cat in Box (Schrödinger Meme)</li>
+                        <li>Unlock XP: +50</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="step" onclick="advanceJourney(4)">
+                <h3>Step 4: Returning Sessions</h3>
+                <p>AI recalls: "Hey, yesterday's math? Let's crush it today!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Instant Hooks & Viral Features (Challenge 3) -->
+    <section id="features" class="section">
+        <h2>Instant Wow Hooks</h2>
+        <div class="feature-grid">
+            <!-- AI Selfie Buddy -->
+            <div class="feature-card">
+                <h3>📱 AI Selfie Buddy</h3>
+                <p>Upload photo → AI Buddy in your style. Instant emotional connect.</p>
+                <input type="file" id="selfieInput" accept="image/*" onchange="generateSelfieBuddy()">
+                <canvas id="selfieCanvas" class="hidden"></canvas>
+                <img id="buddyOutput" class="hidden" alt="Your AI Buddy">
+                <button class="share-btn" onclick="simulateShare('selfie')">Share Buddy! 🎉</button>
+            </div>
+            <!-- AI Study Playlist -->
+            <div class="feature-card">
+                <h3>🎶 AI Study Playlist Generator</h3>
+                <p>Input mood/topic → Spotify-like playlist. Study mode vibes.</p>
+                <input type="text" id="playlistInput" placeholder="Chill math session">
+                <button onclick="generatePlaylist()">Generate Playlist</button>
+                <ul id="playlistOutput" class="hidden"></ul>
+            </div>
+            <!-- 1-Click Knowledge Reels -->
+            <div class="feature-card">
+                <h3>⚡ 1-Click Knowledge Reels</h3>
+                <p>TikTok-style: Explainer video of your topic. Viral short-form learning.</p>
+                <input type="text" id="reelInput" placeholder="Python loops">
+                <button onclick="generateReel()">Create Reel</button>
+                <div id="reelOutput" class="hidden"></div>
+            </div>
+        </div>
+        <!-- Viral Loops (Challenge 3) -->
+        <div class="viral-loels">
+            <h3>Viral Loops</h3>
+            <button onclick="simulateShare('flashcard')">Share AI Flashcard on WhatsApp</button>
+            <button onclick="startChallenge()">🏆 Start Social Challenge: Who Solves Fastest?</button>
+            <button onclick="referFriend()">🎁 Refer Friend → Unlock Premium Avatar</button>
+        </div>
+    </section>
+
+    <!-- Section 4: Learning Companions Expansion (Challenge 4) -->
+    <section id="companions" class="section">
+        <h2>Companion Personas: Emotional Buddies</h2>
+        <p>Adopt new ones via dashboard tiles. Feels like a squad, not tools.</p>
+        <div class="companion-grid">
+            <div class="companion-card" onclick="adoptCompanion('coding')">
+                <i class="fas fa-code"></i>
+                <h4>Coding Buddy</h4>
+                <p>GitHub Copilot + Study Partner. Debug with vibes.</p>
+            </div>
+            <div class="companion-card" onclick="adoptCompanion('creativity')">
+                <i class="fas fa-palette"></i>
+                <h4>Creativity Mentor</h4>
+                <p>Portfolio tips, arts hacks. Unlock your inner artist.</p>
+            </div>
+            <div class="companion-card" onclick="adoptCompanion('mental')">
+                <i class="fas fa-brain"></i>
+                <h4>Mental Fitness Coach</h4>
+                <p>Stress busters, time boxing. Yo's got your back 💙</p>
+            </div>
+        </div>
+        <!-- Mood-Adaptive Modes (Challenge 1) -->
+        <div class="modes">
+            <h3>Gen Z Tutor Features: Make AI Alive</h3>
+            <p>🎭 Persona: Customize avatar/voice/vibe.</p>
+            <select id="vibeSelect">
+                <option>Quick Hack (Fast tips)</option>
+                <option>Deep Dive (Full explain)</option>
+                <option>Chill Buddy (Casual chat)</option>
+            </select>
+            <p>🎮 Gamified: Streaks + XP. Unlock achievements like "Meme Master."</p>
+            <div class="streak-bar">Streak: <span id="streak">3 days</span> | XP: <span id="xp">150</span></div>
+        </div>
+    </section>
+
+    <!-- Section 5: Dashboard Redesign (Challenge 5) -->
+    <section id="dashboard" class="section">
+        <h2>Dashboard: Mobile-First Layout</h2>
+        <div class="dashboard">
+            <!-- Top: AI Companions -->
+            <div class="companions-row">
+                <div class="companion-tile active">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjUiIGZpbGw9IiM0QUY4RkYiLz4KPC9zdmc+Cg==" alt="Math Buddy">
+                    <p>Math Tutor</p>
+                </div>
+                <div class="companion-tile">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjUiIGZpbGw9IiNGRjUwNSIvPgo8L3N2Zz4K" alt="Coding Buddy">
+                    <p>Coding Buddy</p>
+                </div>
+            </div>
+            <!-- Center: Tools -->
+            <div class="tools-row">
+                <button class="tool-btn" onclick="alert('Flashcards generated! +30 XP')">Flashcards <i class="fas fa-cards"></i></button>
+                <button class="tool-btn" onclick="alert('Quiz started! Compete with friends')">Quizzes <i class="fas fa-question"></i></button>
+                <button class="tool-btn" onclick="generateReel()">Reels <i class="fas fa-video"></i></button>
+            </div>
+            <!-- Bottom: Progress Tracker -->
+            <div class="progress-bar">
+                <p>Level Up! Progress: 75% to next badge.</p>
+                <div class="xp-bar"><div class="fill" style="width:75%"></div></div>
+                <button onclick="levelUp()">Claim XP + Microanimation</button>
+            </div>
+        </div>
+        <!-- Microinteractions: Hover/Mascot -->
+        <div class="mascot" id="mascot">Yo: "What's up? Let's learn!" <i class="fas fa-robot"></i></div>
+    </section>
+
+    <!-- Section 6: Network Effects & Repeat Usage (Challenge 6) -->
+    <section id="network" class="section">
+        <h2>Virality & Retention Engine</h2>
+        <div class="network-features">
+            <!-- Conversion UI/UX -->
+            <div class="conversion">
+                <h3>Easy Entry</h3>
+                <p>Skip signup: Instant WhatsApp login. "Show Results" button everywhere.</p>
+                <button class="share-btn" onclick="simulateShare('results')">Share Results Now</button>
+            </div>
+            <!-- Smart Nudges -->
+            <div class="nudges">
+                <h3>Smart Nudges</h3>
+                <p>🌟 "Invite 2 friends to unlock AI Meme Mode!"</p>
+                <button onclick="nudgeInvite()">Invite Friends</button>
+            </div>
+            <!-- Network Mechanics -->
+            <div class="mechanics">
+                <h3>Network Effects</h3>
+                <!-- Study Squads -->
+                <div class="squad">
+                    <h4>📚 Study Squads (3-5 Friends)</h4>
+                    <p>Shared quizzes + AI leaderboards. Discord-like group chat.</p>
+                    <button onclick="joinSquad()">Join/Create Squad</button>
+                    <div id="leaderboard" class="hidden">
+                        <ol>
+                            <li>You: 500 XP</li>
+                            <li>Friend1: 450 XP</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- Referral Tree -->
+                <div class="referral-tree">
+                    <h4>🔗 Referral Tree</h4>
+                    <p>Visual network: See who you brought in.</p>
+                    <div class="tree-visual">
+                        <div class="node you">You</div>
+                        <div class="branch">
+                            <div class="node friend">Friend A (+Avatar Unlock)</div>
+                            <div class="node friend">Friend B</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Social XP/Badges -->
+                <div class="badges">
+                    <h4>🏅 Social Badges</h4>
+                    <p>"Top Contributor" → Share on Insta/LinkedIn.</p>
+                    <button class="share-btn" onclick="simulateShare('badge')">Share Badge</button>
+                </div>
+            </div>
+            <!-- Repeat Hooks -->
+            <div class="repeat-hooks">
+                <h3>Repeat Usage</h3>
+                <p>Daily Missions: "Learn 5 concepts today." Streak UI like Duolingo.</p>
+                <div class="mission">Mission: Quick Math Hack → Complete for +20 XP</div>
+                <div class="streak-ui">Streak: 🔥 5 Days | Level: 3</div>
+                <p>Companion Memory: "Yo recalls: Yesterday's code? Let's build on it!"</p>
+                <button onclick="alert('Daily streak extended! +20 XP 🔥')">Complete Daily Mission</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gen Z Funnel Strategy (Special Focus - Full Visualization & Checkpoints) -->
+<section id="funnel" class="section">
+    <h2>Gen Z Funnel Strategy: From Hook to Habit 🚀</h2>
+    <p>Our mobile-first flow reduces drop-off 80%: Instant wows + viral vibes keep Gen Z coming back.</p>
+    <div class="funnel-visual">
+        <!-- Stage 1: Attract -->
+        <div class="funnel-stage active" id="funnel-attract">
+            <h3>1. Attract: Homepage Hero Hook</h3>
+            <p>Grab attention in 5s: Live demo query → Instant AI answer (no signup). "Ask Yo anything!"</p>
+            <button onclick="startFunnelStage('attract')" class="funnel-btn">Demo Attract Flow</button>
+            <button onclick="showSection('home')" class="funnel-btn secondary">Jump to Homepage</button>
+            <div id="attract-demo" class="funnel-output hidden">
+                <p>✨ Simulated: "Yo: Quantum = Schrödinger's cat meme! +20 XP" <br> (Vortex loads → Output appears)</p>
+            </div>
+        </div>
+
+        <!-- Stage 2: Engage -->
+        <div class="funnel-stage" id="funnel-engage">
+            <h3>2. Engage: Fun Onboarding Wow</h3>
+            <p>10s setup: Choose goal/avatar → First output (flashcards/memes). Emotional connect via selfie buddy.</p>
+            <button onclick="startFunnelStage('engage')" class="funnel-btn">Start Onboarding</button>
+            <button onclick="showSection('onboarding')" class="funnel-btn secondary">Jump to Journey</button>
+            <div id="engage-wow" class="wow-card hidden">
+                <h4>Your First Wow:</h4>
+                <ul>
+                    <li>Avatar: Chill Math Buddy 🎭</li>
+                    <li>Output: "Ace SATs with memes! +50 XP"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Stage 3: Retain -->
+        <div class="funnel-stage" id="funnel-retain">
+            <h3>3. Retain: Streaks & Emotional Nudges</h3>
+            <p>Daily hooks: XP bars, missions, AI says "Yo missed you today 💙". Dashboard recalls sessions.</p>
+            <button onclick="startFunnelStage('retain')" class="funnel-btn">Trigger Nudge</button>
+            <button onclick="showSection('dashboard')" class="funnel-btn secondary">Jump to Dashboard</button>
+            <div id="retain-nudge" class="funnel-output hidden">
+                <p>💙 Yo: "Missed you today! Complete mission for streak 🔥 +20 XP"</p>
+                <div class="streak-ui">Streak: 4 Days | Level: 2</div>
+            </div>
+        </div>
+
+        <!-- Stage 4: Share -->
+        <div class="funnel-stage" id="funnel-share">
+            <h3>4. Share: Viral Loops & Squads</h3>
+            <p>One-click shares: Results/memes/challenges on WhatsApp/Insta. Refer → Unlock badges/tree growth.</p>
+            <button onclick="startFunnelStage('share')" class="funnel-btn">Simulate Share</button>
+            <button onclick="showSection('network')" class="funnel-btn secondary">Jump to Network</button>
+            <div id="share-loop" class="funnel-output hidden">
+                <p>📱 Shared: "Beat my quiz score? Join squad!" <br> Tree Grows: +1 Friend (Unlock Avatar)</p>
+                <div class="referral-tree mini">
+                    <div class="node you">You</div>
+                    <div class="branch">
+                        <div class="node friend">New Squad Mate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Funnel Metrics Mock -->
+    <div class="funnel-metrics">
+        <h4>Expected Impact:</h4>
+        <ul>
+            <li>Attract: 70% click-through (instant demo)</li>
+            <li>Engage: 80% complete onboarding (wow in 30s)</li>
+            <li>Retain: 60% daily return (nudges/streaks)</li>
+            <li>Share: 40% viral coefficient (loops/squads)</li>
+        </ul>
+    </div>
+</section>
+                
