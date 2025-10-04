@@ -78,7 +78,7 @@ Our prototype is fully interactive—click through sections via the nav bar to e
 This is a static prototype—no server needed. View locally or deploy for free.
 
 ### Local Run (5 Seconds)
-1. Clone/Download the repo: `git clone https://github.com/yourusername/yolearn-ai-prototype.git`
+1. Clone/Download the repo: `git clone https://github.com/Anshika26-git/yolearn-ai-prototype.git`
 2. Open `index.html` in a browser (Chrome/Firefox) or use VS Code Live Server extension.
 3. Navigate sections via top nav—interact with buttons/inputs!
 
