@@ -82,14 +82,6 @@ This is a static prototype—no server needed. View locally or deploy for free.
 2. Open `index.html` in a browser (Chrome/Firefox) or use VS Code Live Server extension.
 3. Navigate sections via top nav—interact with buttons/inputs!
 
-### Live Deployment (Recommended for Judges)
-- **GitHub Pages** (Free):
-  1. Push files to GitHub repo.
-  2. Settings → Pages → Source: "Deploy from branch" (main) → Save.
-  3. Live URL: `https://yourusername.github.io/yolearn-ai-prototype`
-- **Alternatives**: Netlify (drag-drop folder) or Vercel (free tier).
-- **Test**: Ensure mobile view works (resize browser)—all responsive!
-
 **Files**:
 - `index.html`: Main structure + sections.
 - `styles.css`: Dark Gen Z theme, animations, responsive media queries.
